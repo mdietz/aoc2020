@@ -4,9 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	//"regexp"
 	"strconv"
-	//"strings"
 )
 
 type inst struct {
