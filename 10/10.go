@@ -44,7 +44,6 @@ func main() {
 			continue
 		}
 		last := i - 1
-		fmt.Println(adaptersWithRoutes)
 		for true {
 			if last >= 0 && e[0] - adaptersWithRoutes[last][0] <= 3 {
 				adaptersWithRoutes[i][1] += adaptersWithRoutes[last][1]
