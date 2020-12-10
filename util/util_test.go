@@ -32,3 +32,24 @@ func TestAtoi(t *testing.T) {
         })
     }
 }
+
+func TestContains(t *testing.T) {
+	var tests = []struct {
+		a []string
+		s string
+        want bool
+    }{
+        {[]string{"a", "b"}, "a", true},
+        {[]string{"b", "b"}, "a", false},
+    }
+
+    for _, tt := range tests {
+        testname := fmt.Sprintf("%v, %s", tt.a, tt.s)
+        t.Run(testname, func(t *testing.T) {
+            ans := Contains(tt.a, tt.s)
+            if ans != tt.want {
+                t.Errorf("got %t, want %t", ans, tt.want)
+            }
+        })
+    }
+}
