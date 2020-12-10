@@ -32,31 +32,27 @@ func main() {
 	}
 	fmt.Println(count_1*count_3)
 
-	var workingSet [][]int = nil
-	var finalSet [][]int = nil
-	var first []int = nil
-	first = append(first, 0)
-	workingSet = append(workingSet, first)
-	for len(workingSet) != 0 {
-		c := workingSet[0]
-		workingSet = workingSet[1:]
-		ex := c[len(c)-1]
-		currAdapter := adapters[ex]
-		if currAdapter == adapters[len(adapters)-1] {
-			finalSet = append(finalSet, c)
+	var adaptersWithRoutes [][]int = nil
+	for _, e := range(adapters) {
+		adaptersWithRoutes = append(adaptersWithRoutes, []int{e, 0})
+	}
+
+	adaptersWithRoutes[0][1]++
+
+	for i, e := range(adaptersWithRoutes) {
+		if i == 0 {
+			continue
 		}
-		next := ex + 1
+		last := i - 1
+		fmt.Println(adaptersWithRoutes)
 		for true {
-			if next < len(adapters) &&  adapters[next] - currAdapter <= 3 {
-				cop := make([]int, len(c))
-				copy(cop, c)
-				cop = append(cop, next)
-				workingSet = append(workingSet, cop)
+			if last >= 0 && e[0] - adaptersWithRoutes[last][0] <= 3 {
+				adaptersWithRoutes[i][1] += adaptersWithRoutes[last][1]
 			} else {
 				break
 			}
-			next++
+			last--
 		}
 	}
-	fmt.Println(len(finalSet))
+	fmt.Println(adaptersWithRoutes[len(adaptersWithRoutes)-1][1])
 }
